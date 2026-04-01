@@ -3,45 +3,115 @@
 <head>
   <title>Konsultasi Online Jatim Bejo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: url('https://tiketwisata.surabaya.go.id/storage/tour/monumen-tugu-pahlawan_1680340884.jpeg') no-repeat center center;
       background-size: cover;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      position: relative;
+    }
+
+    /* overlay gelap */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+    }
+
+    /* container */
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      color: white;
+      flex-direction: column;
       text-align: center;
+      animation: fadeIn 1s ease;
     }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      margin-top: 8px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    /* spinner modern */
     .loader {
-      border: 4px solid rgba(255,255,255,0.3);
-      border-top: 4px solid white;
+      margin-top: 25px;
+      width: 45px;
+      height: 45px;
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top: 3px solid #ffffff;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      margin: 20px auto;
-      animation: spin 1s linear infinite;
+      animation: spin 0.9s linear infinite;
     }
+
+    /* loading bar bawah */
+    .progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: #22c55e;
+      animation: loadBar 1.2s ease forwards;
+    }
+
+    /* animasi */
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes loadBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
   </style>
 </head>
+
 <body>
 
-  <div>
+  <div class="container">
     <h1>Konsultasi Online Jatim Bejo</h1>
-    <p>Menghubungkan ke sistem...</p>
+    <p>Memuat sistem, mohon tunggu...</p>
     <div class="loader"></div>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar"></div>
   </div>
 
   <script>
     setTimeout(() => {
       window.location.replace("https://script.google.com/macros/s/AKfycbxoHw1i8hV7mVDRTbDwfis77xPlFScSQ-n-Dwnyvh-1ch_j5w3j7JcwNysfX1jOaTM/exec");
-    }, 1000);
+    }, 1300);
   </script>
 
 </body>
